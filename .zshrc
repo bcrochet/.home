@@ -1,11 +1,20 @@
+#
+# Sets Oh My Zsh options.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+DOT_HOME="$HOME/.home"
+
 # Set the path to Oh My Zsh.
 export OMZ="$HOME/.oh-my-zsh"
 
 # Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':omz:editor' keymap 'vi'
+zstyle ':omz:module:editor' keymap 'emacs'
 
 # Auto convert .... to ../..
-zstyle ':omz:editor' dot-expansion 'no'
+zstyle ':omz:module:editor' dot-expansion 'no'
 
 # Set case-sensitivity for completion, history lookup, etc.
 zstyle ':omz:*:*' case-sensitive 'no'
@@ -22,44 +31,32 @@ zstyle ':omz:module:terminal' auto-title 'yes'
 # Set the Zsh functions to load (man zshcontrib).
 # zstyle ':omz:load' zfunction 'zargs' 'zmv'
 
-# Add local theme directory. This must come before the module load
-export DOT_HOME=$HOME/.home
-fpath=($DOT_HOME/themes $fpath)
-
 # Set the Oh My Zsh modules to load (browse modules).
 zstyle ':omz:load' omodule 'environment' 'terminal' 'editor' 'completion' \
-  'history' 'directory' 'spectrum' 'alias' 'utility' 'git' 'prompt'
+  'history' 'directory' 'spectrum' 'alias' 'utility' 'prompt' 'git'
 
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
+source "$DOT_HOME/themes/prompt_bcrochet_setup"
 zstyle ':omz:module:prompt' theme 'bcrochet'
 
 # This will make you shout: OH MY ZSHELL!
 source "$OMZ/init.zsh"
 
 # Customize to your needs...
-export PATH=$PATH:$DOT_HOME/bin
-
-if [ -d "$HOME/bin" ]; then
-	export PATH=$PATH:$HOME/bin
-fi
-
-# aliases
 source $DOT_HOME/.aliases
-
-# set environment variables ...
 source $DOT_HOME/.environment_variables
+
+export EDITOR=`which vim`
 
 # add a local .local.zshrc file, if it exists
 if [ -f "$HOME/.local.zshrc" ]; then
 	source $HOME/.local.zshrc
 fi
 
-export EDITOR=`which vim`
-
 if [ -d "$HOME/.rvm/bin" ]; then
-	PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+	PATH=$PATH:$HOME/.rvm/bin # add RVM to PATH
 	source $HOME/.rvm/scripts/rvm
 fi
 

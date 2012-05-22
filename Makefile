@@ -4,7 +4,7 @@
 DEST_PATH = $(HOME)/.home
 
 # files to delete from $HOME
-DOT_FILES = $(HOME)/.zshrc $(HOME)/.gemrc $(HOME)/.screenrc $(HOME)/sshblack
+DOT_FILES = $(HOME)/.zshrc $(HOME)/.gemrc $(HOME)/.screenrc $(HOME)/sshblack $(HOME)/.vimrc
 
 # oh-my-zsh Repository to be used
 OH_MY_REPO = https://github.com/sorin-ionescu/oh-my-zsh.git
@@ -14,7 +14,12 @@ LOCAL_SETTINGS_FILE = $(HOME)/.local.zshrc
 
 ZSH_PATH = `which zsh`
 
-install: $(HOME)/.oh-my-zsh clean $(DOT_FILES) $(LOCAL_SETTINGS_FILE) help
+THEME = prompt_bcrochet_setup
+
+
+
+
+install: $(HOME)/.oh-my-zsh clean $(DOT_FILES) theme $(LOCAL_SETTINGS_FILE) help
 	
 clean:
 	rm -f $(DOT_FILES)
@@ -42,12 +47,18 @@ $(HOME)/.zshrc:
 
 $(HOME)/.gemrc:
 	ln -s $(DEST_PATH)/.gemrc $(HOME)/.gemrc
+
 $(HOME)/.screenrc:
 	ln -s $(DEST_PATH)/.screenrc $(HOME)/.screenrc
+
 $(HOME)/sshblack:
 	ln -s $(DEST_PATH)/bin/sshblack $(HOME)/sshblack
+
+$(HOME)/.vimrc:
+	ln -s $(DEST_PATH)/.vimrc $(HOME)/.vimrc
 	
-	
+theme:
+	ln -s $(DEST_PATH)/themes/$(THEME) $(HOME)/.oh-my-zsh/modules/prompt/functions/$(THEME)
 
 # local settings file
 $(LOCAL_SETTINGS_FILE):

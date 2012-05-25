@@ -22,9 +22,13 @@ zstyle ':omz:module:terminal' auto-title 'yes'
 # Set the Zsh functions to load (man zshcontrib).
 # zstyle ':omz:load' zfunction 'zargs' 'zmv'
 
+# Add local theme directory. This must come before the module load
+export DOT_HOME=$HOME/.home
+fpath=($DOT_HOME/themes $fpath)
+
 # Set the Oh My Zsh modules to load (browse modules).
 zstyle ':omz:load' omodule 'environment' 'terminal' 'editor' 'completion' \
-  'history' 'directory' 'spectrum' 'alias' 'utility' 'prompt' 'git'
+  'history' 'directory' 'spectrum' 'alias' 'utility' 'git' 'prompt'
 
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
@@ -35,7 +39,6 @@ zstyle ':omz:module:prompt' theme 'bcrochet'
 source "$OMZ/init.zsh"
 
 # Customize to your needs...
-export DOT_HOME=$HOME/.home
 export PATH=$PATH:$DOT_HOME/bin
 
 if [ -d "$HOME/bin" ]; then
@@ -44,9 +47,6 @@ fi
 
 # aliases
 source $DOT_HOME/.aliases
-
-# load custom theme
-# source $DOT_HOME/themes/prompt_bcrochet_setup
 
 # set environment variables ...
 source $DOT_HOME/.environment_variables

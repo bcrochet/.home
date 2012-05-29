@@ -9,7 +9,10 @@ defscrollback	1024
 shell 		zsh
 
 sorendition	rw
-hardstatus	alwayslastline "%{.w} %c | %H LOAD: %1 | %{wb} %w %{= dd}"
+caption string "%?%F%{= Bk}%? %C%A %D %d-%m-%Y %{= kB} %t%= %?%F%{= Bk}%:%{= wk}%? %n "
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+# hardstatus	alwayslastline "%{.w} %c | %H LOAD: %1 | %{wb} %w %{= dd}"
 
 activity		"^Gactivity in %n (%t) [%w:%s]~"
 bell_msg		"bell in %n!"
@@ -20,9 +23,10 @@ setenv SSH_AUTH_SOCK $HOME/.screen-ssh-agent
 sessionname $HOST
 
 # screens
-screen -t SHELL 0 zsh
-screen -t SHELL 1 zsh
-screen -t SHELL 2 zsh
+screen -t irc   0 weechat-curses
+screen -t email 1 mutt
+screen -t imap  2 offlineimap -u blinkenlights
+screen -t SHELL 3 zsh
 
 select 0
 

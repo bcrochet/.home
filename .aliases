@@ -17,6 +17,7 @@ alias g='git'
 alias gpom='git push origin master'
 alias gs='git status'
 alias gl='git log'
+alias glol='git log --graph --pretty=oneline --abbrev-commit'
 alias e='vim'
 
 hash -d w=~/Workspace

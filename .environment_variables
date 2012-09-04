@@ -1,6 +1,8 @@
 #!/bin/bash
 
 export TEST_ENVIRONMENT=local
+export ANDROID_SDK=$HOME/android-sdks
+export PATH=$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$PATH
 
 
 if [[ `which git 2>&1` != *"not found"* ]]

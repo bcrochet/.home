@@ -4,7 +4,7 @@
 DEST_PATH = $(HOME)/.home
 
 # files to delete from $HOME
-DOT_FILES = $(HOME)/.zshrc $(HOME)/.gemrc $(HOME)/.screenrc $(HOME)/.vimrc
+DOT_FILES = $(HOME)/.zshrc $(HOME)/.gemrc $(HOME)/.screenrc $(HOME)/.vimrc $(HOME)/.notmuch-config
 
 # oh-my-zsh Repository to be used
 OH_MY_REPO = https://github.com/sorin-ionescu/oh-my-zsh.git
@@ -15,9 +15,6 @@ LOCAL_SETTINGS_FILE = $(HOME)/.local.zshrc
 ZSH_PATH = `which zsh`
 
 THEME = prompt_bcrochet_setup
-
-
-
 
 install: $(HOME)/.oh-my-zsh clean $(DOT_FILES) theme $(LOCAL_SETTINGS_FILE) help
 	
